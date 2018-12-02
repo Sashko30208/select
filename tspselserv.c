@@ -1,13 +1,14 @@
-#include <sys/types.s>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
-#include <netinet./in.h>
+#include <netinet/in.h>
 #include <sys/time.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <stdlib.h>
 #define PORT 2442
-int main(int argc, char const *argv[])
+//int main(int argc, char const *argv[])
+int main()
 {
     int server_sockfd,client_sockfd;
     int server_len,client_len;
@@ -42,9 +43,9 @@ int main(int argc, char const *argv[])
         testfds = readfds;
 
         printf("server waiting\n");
-        result = select(FD_SETSIZE,&testfds,(fd_set *)0,(sd_set *) 0, (struct tumeval *) 0);
+        result = select(FD_SETSIZE,&testfds,(fd_set *)0,(fd_set *)0, (struct timeval *) 0);
         if(result<1){
-            perror("selectServ");
+            perror("select on tspselserv<1");
             exit(1);
         }
 
@@ -85,5 +86,4 @@ int main(int argc, char const *argv[])
             }
         }
     }
-    return 0;
 }
