@@ -1,12 +1,12 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
-#include <net.inet/in.h>
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <stdlib.h>
 #define PORT 2442
-#define ADDR 127.0.0.1
+#define ADDR "127.0.0.1"
 int main()
 {
     int sockfd;
@@ -15,7 +15,7 @@ int main()
     int result;
     char ch = 'A';
     //create socket
-    sockfd =socket(AF_INET,Sock_STREAM, 0);
+    sockfd =socket(AF_INET,SOCK_STREAM, 0);
     address.sin_family=AF_INET;
     address.sin_addr.s_addr=inet_addr(ADDR);
     address.sin_port=htons(PORT);
